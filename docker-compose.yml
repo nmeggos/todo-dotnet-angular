@@ -1,0 +1,23 @@
+﻿
+version: '3.4'
+
+services:
+  todoapi:
+    container_name: todoapi
+    image: todoapi
+    build:
+      context: .
+      dockerfile: src/TodoTaskManagement.API/Dockerfile
+    ports: 
+      - "5000:80"
+    depends_on:
+      - sqlserver
+  
+  sqlserver:
+    container_name: tododb
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    ports: 
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=#p@55w0rd# 
