@@ -1,4 +1,4 @@
-﻿namespace TodoTaskManagement.Application.Features.CreateTodoItem;
+﻿namespace TodoTaskManagement.Application.Features.TodoItems.CreateTodoItem;
 
 public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCommand>
 {

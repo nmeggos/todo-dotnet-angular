@@ -1,6 +1,6 @@
 ﻿using TodoTaskManagement.Application.ResponseWrappers;
 
-namespace TodoTaskManagement.Application.Features.GetTodoItem;
+namespace TodoTaskManagement.Application.Features.TodoItems.GetTodoItem;
 
 public class GetTodoItemQuery : IRequest<Response<TodoItemResult>>
 {

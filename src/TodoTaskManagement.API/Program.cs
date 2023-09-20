@@ -27,5 +27,6 @@ using (var scope = app.Services.CreateScope())
 app.UseSwaggerUI();
 
 app.MapTodoItemEndpoints();
+app.MapTodoCategoryEndpoints();
 
 app.Run();

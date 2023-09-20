@@ -1,8 +1,7 @@
 ﻿using TodoTaskManagement.Application.ResponseWrappers;
-using TodoTaskManagement.Domain;
 using TodoTaskManagement.Domain.Interfaces;
 
-namespace TodoTaskManagement.Application.Features.GetTodoItems;
+namespace TodoTaskManagement.Application.Features.TodoItems.GetTodoItems;
 
 internal class GetToItemsQueryHandler : IRequestHandler<GetTodoItemsQuery,Response<IEnumerable<TodoItemResult>>>
 {

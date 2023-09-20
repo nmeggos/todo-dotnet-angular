@@ -1,5 +1,6 @@
 using AutoMapper;
-using TodoTaskManagement.Application.Features.GetTodoItems;
+using TodoTaskManagement.Application.Features.TodoItems;
+using TodoTaskManagement.Application.Features.TodoItems.GetTodoItems;
 using TodoTaskManagement.Domain.Interfaces;
 
 namespace TodoTaskManagement.Application.UnitTests.Features.GetTodoItemsTests;

@@ -1,7 +1,5 @@
 ﻿
-using TodoTaskManagement.Domain.Interfaces;
-
-namespace TodoTaskManagement.Infrastructure.Persistence;
+namespace TodoTaskManagement.Infrastructure.Persistence.Repositories;
 
 public class TodoItemRepository : ITodoItemRepository
 {

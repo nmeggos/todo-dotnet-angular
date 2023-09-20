@@ -1,4 +1,4 @@
-﻿namespace TodoTaskManagement.Application.Features;
+﻿namespace TodoTaskManagement.Application.Features.TodoItems;
 
 public class TodoItemResult
 {

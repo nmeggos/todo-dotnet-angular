@@ -1,6 +1,6 @@
 ﻿using TodoTaskManagement.Application.ResponseWrappers;
 
-namespace TodoTaskManagement.Application.Features.CreateTodoItem;
+namespace TodoTaskManagement.Application.Features.TodoItems.CreateTodoItem;
 
 public class CreateTodoItemCommand : IRequest<Response<string>>
 {

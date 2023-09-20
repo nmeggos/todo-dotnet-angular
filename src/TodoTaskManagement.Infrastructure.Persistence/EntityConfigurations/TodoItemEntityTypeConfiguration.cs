@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TodoTaskManagement.Domain;
-
+﻿
 namespace TodoTaskManagement.Infrastructure.Persistence.EntityConfigurations;
 
 public class TodoItemEntityTypeConfiguration : IEntityTypeConfiguration<TodoItem>

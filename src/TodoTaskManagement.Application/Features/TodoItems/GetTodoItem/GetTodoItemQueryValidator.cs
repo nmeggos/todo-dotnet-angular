@@ -1,4 +1,4 @@
-﻿namespace TodoTaskManagement.Application.Features.GetTodoItem;
+﻿namespace TodoTaskManagement.Application.Features.TodoItems.GetTodoItem;
 
 public class GetTodoItemQueryValidator : AbstractValidator<GetTodoItemQuery>
 {

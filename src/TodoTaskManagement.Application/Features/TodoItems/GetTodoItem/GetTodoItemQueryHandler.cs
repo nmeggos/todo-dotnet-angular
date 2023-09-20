@@ -2,7 +2,7 @@
 using TodoTaskManagement.Domain.Exceptions;
 using TodoTaskManagement.Domain.Interfaces;
 
-namespace TodoTaskManagement.Application.Features.GetTodoItem;
+namespace TodoTaskManagement.Application.Features.TodoItems.GetTodoItem;
 
 public class GetTodoItemQueryHandler : IRequestHandler<GetTodoItemQuery, Response<TodoItemResult>>
 {

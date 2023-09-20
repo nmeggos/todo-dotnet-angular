@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TodoTaskManagement.Domain.Interfaces;
+using TodoTaskManagement.Infrastructure.Persistence.Repositories;
 
 namespace TodoTaskManagement.Infrastructure.Persistence;
 
@@ -16,6 +17,7 @@ public static class DependencyManagement
         });
 
         services.AddScoped<ITodoItemRepository, TodoItemRepository>();
+        services.AddScoped<ITodoCategoryRepository, TodoCategoryRepository>();
 
         return services;
     }

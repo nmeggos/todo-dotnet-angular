@@ -1,8 +1,9 @@
-﻿using TodoTaskManagement.Domain.Exceptions;
+﻿using TodoTaskManagement.Domain.Abstracts;
+using TodoTaskManagement.Domain.Exceptions;
 
 namespace TodoTaskManagement.Domain;
 
-public class TodoItem
+public class TodoItem : BaseAggregateRoot<TodoItemId>
 {
     private TodoItem()
     {
@@ -11,14 +12,12 @@ public class TodoItem
     
     public TodoItem(TodoItemId id,
         string title,
-        string description)
+        string description) 
     {
         Id = id;
         SetTitle(title);
         Description = description;
     }
-
-    public TodoItemId Id { get; private set; }
     
     public string Title { get; private set; }
     

@@ -1,7 +1,7 @@
 ﻿using TodoTaskManagement.Application.ResponseWrappers;
 using TodoTaskManagement.Domain.Interfaces;
 
-namespace TodoTaskManagement.Application.Features.CreateTodoItem;
+namespace TodoTaskManagement.Application.Features.TodoItems.CreateTodoItem;
 
 public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, Response<string>>
 {

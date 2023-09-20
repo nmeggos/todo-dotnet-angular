@@ -1,9 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TodoTaskManagement.Application.Features;
-using TodoTaskManagement.Application.Features.CreateTodoItem;
-using TodoTaskManagement.Application.Features.GetTodoItem;
-using TodoTaskManagement.Application.Features.GetTodoItems;
+using TodoTaskManagement.Application.Features.TodoItems;
+using TodoTaskManagement.Application.Features.TodoItems.CreateTodoItem;
+using TodoTaskManagement.Application.Features.TodoItems.GetTodoItem;
+using TodoTaskManagement.Application.Features.TodoItems.GetTodoItems;
 using TodoTaskManagement.Application.ResponseWrappers;
 
 namespace TodoTaskManagement.API.Endpoints;

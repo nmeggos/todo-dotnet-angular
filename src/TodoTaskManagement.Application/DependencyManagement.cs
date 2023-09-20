@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using TodoTaskManagement.Application.Behaviours;
 
 namespace TodoTaskManagement.Application;
 
@@ -14,6 +15,8 @@ public static class DependencyManagement
         services.AddMediatR(cfg => 
             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly())
         );
+        
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         
         return services;
     }
