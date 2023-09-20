@@ -9,11 +9,6 @@ public record TodoCategoryId
         Value = value;
     }
 
-    private TodoCategoryId(int? value)
-    {
-        throw new NotImplementedException();
-    }
-
     public int Value { get; }
     
     public static implicit operator int(TodoCategoryId id) => id.Value;
@@ -40,7 +35,7 @@ public record TodoCategoryId
             return new(0);
         }
         
-        return new(id);
+        return new((int)id);
     }
 
     public override string ToString()

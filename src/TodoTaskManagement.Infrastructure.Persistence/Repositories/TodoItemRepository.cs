@@ -12,14 +12,18 @@ public class TodoItemRepository : ITodoItemRepository
 
     public async Task<TodoItem?> GetById(TodoItemId id)
     {
-        var results = await _dbContext.TodoItems.FindAsync(id);
+        var results = await _dbContext.TodoItems
+            .Include(i => i.Category)
+            .FirstOrDefaultAsync(x => x.Id == id);
 
         return results;
     }
 
     public async Task<IEnumerable<TodoItem>> GetAll()
     {
-        var results = await _dbContext.TodoItems.ToListAsync();
+        var results = await _dbContext.TodoItems
+            .Include(i => i.Category)
+            .ToListAsync();
 
         return results;
     }
