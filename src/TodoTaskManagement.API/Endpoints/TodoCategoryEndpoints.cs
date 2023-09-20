@@ -20,7 +20,7 @@ public static class TodoCategoryEndpoints
         });
         
         group.MapGet("/{id}", async (
-                [FromRoute] string id,
+                [FromRoute] string? id,
                 [FromServices] IMediator mediator) =>
         {
             var response = await mediator.Send(GetTodoCategoryQuery.FromRequest(id));

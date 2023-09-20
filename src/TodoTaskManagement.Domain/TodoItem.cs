@@ -9,8 +9,8 @@ public class TodoItem : BaseAggregateRoot<TodoItemId>
     {
         
     }
-    
-    public TodoItem(TodoItemId id,
+
+    private TodoItem(TodoItemId id,
         string title,
         string description) 
     {
@@ -22,6 +22,10 @@ public class TodoItem : BaseAggregateRoot<TodoItemId>
     public string Title { get; private set; }
     
     public string Description { get; private set; }
+    
+    public TodoCategoryId? CategoryId { get; private set; }
+    
+    public TodoCategory? Category { get; private set; }
     
     public DateTime CreatedOn { get; private set; }
     
@@ -45,6 +49,11 @@ public class TodoItem : BaseAggregateRoot<TodoItemId>
         IsCompleted = true;
     }
     
+    public void AssignCategory(TodoCategoryId categoryId)
+    {
+        CategoryId = categoryId;
+    }
+    
     public void Update(string title, string description)
     {
         SetTitle(title);
@@ -66,12 +75,34 @@ public class TodoItem : BaseAggregateRoot<TodoItemId>
     {
         var currentDate = DateTime.UtcNow;
         
-        return new TodoItem(
+        var todo = new TodoItem(
             TodoItemId.New(),
             title,
             description)
         {
             CreatedOn = currentDate
         };
+
+        return todo;
+    }
+    
+    public static TodoItem Create(string title, string description, TodoCategoryId? todoCategoryId)
+    {
+        var currentDate = DateTime.UtcNow;
+        
+        var todo = new TodoItem(
+            TodoItemId.New(),
+            title,
+            description)
+        {
+            CreatedOn = currentDate
+        };
+
+        if (todoCategoryId is not null)
+        {
+            todo.AssignCategory(todoCategoryId);
+        }
+
+        return todo;
     }
 }

@@ -7,12 +7,12 @@ public class GetTodoCategoryQuery : IRequest<Response<TodoCategoryResult>>
         
     }
     
-    private GetTodoCategoryQuery(string id)
+    private GetTodoCategoryQuery(string? id)
     {
         Id = id;
     }
 
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
-    public static GetTodoCategoryQuery FromRequest(string id) => new(id);
+    public static GetTodoCategoryQuery FromRequest(string? id) => new(id);
 }

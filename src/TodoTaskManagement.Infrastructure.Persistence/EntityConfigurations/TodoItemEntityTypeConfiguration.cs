@@ -21,6 +21,11 @@ public class TodoItemEntityTypeConfiguration : IEntityTypeConfiguration<TodoItem
             .HasMaxLength(500)
             .IsRequired(false);
 
+        builder.HasOne(p => p.Category)
+            .WithMany()
+            .IsRequired(false)
+            .HasForeignKey(fk => fk.CategoryId);
+
         builder.Property(p => p.IsCompleted)
             .HasColumnName("IsCompleted")
             .HasColumnType("bit")

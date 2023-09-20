@@ -1,6 +1,4 @@
-﻿using TodoTaskManagement.Application.ResponseWrappers;
-
-namespace TodoTaskManagement.Application.Features.TodoItems.CreateTodoItem;
+﻿namespace TodoTaskManagement.Application.Features.TodoItems.CreateTodoItem;
 
 public class CreateTodoItemCommand : IRequest<Response<string>>
 {
@@ -11,4 +9,6 @@ public class CreateTodoItemCommand : IRequest<Response<string>>
     
     public string Title { get; set; }
     public string Description { get; set; }
+    
+    public string? CategoryId { get; set; }
 }

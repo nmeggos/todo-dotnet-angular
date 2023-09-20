@@ -12,16 +12,15 @@ public record TodoCategoryId
     public int Value { get; }
     
     public static implicit operator int(TodoCategoryId id) => id.Value;
-    public static implicit operator TodoCategoryId(int id) => new(id);
 
-    public static TodoCategoryId From(string id)
+    public static TodoCategoryId From(string? id)
     {
         if (int.TryParse(id, out var value))
         {
             return new TodoCategoryId(value);
         }
-        
-        throw new InvalidTodoCategoryIdException("Invalid TodoCategoryId value.");
+
+        return new TodoCategoryId(0);
     }
     
     public static TodoCategoryId From(int id)

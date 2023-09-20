@@ -1,7 +1,4 @@
-﻿using TodoTaskManagement.Application.ResponseWrappers;
-using TodoTaskManagement.Domain.Interfaces;
-
-namespace TodoTaskManagement.Application.Features.TodoItems.CreateTodoItem;
+﻿namespace TodoTaskManagement.Application.Features.TodoItems.CreateTodoItem;
 
 public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, Response<string>>
 {
@@ -14,7 +11,7 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
 
     public async Task<Response<string>> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
     {
-        var todoItem = TodoItem.Create(request.Title, request.Description);
+        var todoItem = TodoItem.Create(request.Title, request.Description, TodoCategoryId.From(request.CategoryId));
 
         await _todoItemRepository.Add(todoItem);
         
