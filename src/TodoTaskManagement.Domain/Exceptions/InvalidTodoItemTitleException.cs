@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using TodoTaskManagement.Domain.Contracts;
+using TodoTaskManagement.Domain.Interfaces;
 
 namespace TodoTaskManagement.Domain.Exceptions;
 

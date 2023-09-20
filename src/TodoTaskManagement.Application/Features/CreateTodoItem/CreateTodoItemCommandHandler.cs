@@ -1,5 +1,5 @@
 ﻿using TodoTaskManagement.Application.ResponseWrappers;
-using TodoTaskManagement.Domain.Contracts;
+using TodoTaskManagement.Domain.Interfaces;
 
 namespace TodoTaskManagement.Application.Features.CreateTodoItem;
 

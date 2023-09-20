@@ -1,6 +1,6 @@
 ﻿using TodoTaskManagement.Application.ResponseWrappers;
-using TodoTaskManagement.Domain.Contracts;
 using TodoTaskManagement.Domain.Exceptions;
+using TodoTaskManagement.Domain.Interfaces;
 
 namespace TodoTaskManagement.Application.Features.GetTodoItem;
 
