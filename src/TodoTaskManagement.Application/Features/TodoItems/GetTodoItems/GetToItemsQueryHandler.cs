@@ -1,7 +1,4 @@
-﻿using TodoTaskManagement.Application.ResponseWrappers;
-using TodoTaskManagement.Domain.Interfaces;
-
-namespace TodoTaskManagement.Application.Features.TodoItems.GetTodoItems;
+﻿namespace TodoTaskManagement.Application.Features.TodoItems.GetTodoItems;
 
 internal class GetToItemsQueryHandler : IRequestHandler<GetTodoItemsQuery,Response<IEnumerable<TodoItemResult>>>
 {
@@ -17,6 +14,12 @@ internal class GetToItemsQueryHandler : IRequestHandler<GetTodoItemsQuery,Respon
     public async Task<Response<IEnumerable<TodoItemResult>>> Handle(GetTodoItemsQuery request, CancellationToken cancellationToken)
     {
         var todoItems = await _todoItemRepository.GetAll();
+
+        if (!todoItems.Any() || todoItems is null)
+        {
+            throw new NotFoundException($"No Todo Items Found.");
+        }
+        
         var results = _mapper.Map<IEnumerable<TodoItem>,IEnumerable<TodoItemResult>>(todoItems);
         return Response<IEnumerable<TodoItemResult>>.Success(results, "Todo Items Retrieved Successfully");
     }

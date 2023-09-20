@@ -1,6 +1,9 @@
-﻿namespace TodoTaskManagement.Domain.Exceptions;
+﻿using System.Net;
+using TodoTaskManagement.Domain.Interfaces;
 
-public class NotFoundException : Exception
+namespace TodoTaskManagement.Domain.Exceptions;
+
+public class NotFoundException : Exception, IHasHttpStatus
 {
     public NotFoundException()
     {
@@ -16,4 +19,6 @@ public class NotFoundException : Exception
     {
         
     }
+
+    public HttpStatusCode StatusCode => HttpStatusCode.NotFound;
 }
