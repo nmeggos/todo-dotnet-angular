@@ -27,7 +27,7 @@ public class TodoItemEntityTypeConfiguration : IEntityTypeConfiguration<TodoItem
         builder.Property(p => p.IsCompleted)
             .HasColumnName("IsCompleted")
             .HasColumnType("bit")
-            .HasDefaultValue(true)
+            .HasDefaultValue(false)
             .IsRequired();
         
         builder.Property(p => p.CompletedOn)

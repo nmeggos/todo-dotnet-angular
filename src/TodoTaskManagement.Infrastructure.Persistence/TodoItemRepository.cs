@@ -10,7 +10,7 @@ public class TodoItemRepository : ITodoItemRepository
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     }
 
-    public async Task<TodoItem?> Get(TodoItemId id)
+    public async Task<TodoItem?> GetById(TodoItemId id)
     {
         var results = await _dbContext.TodoItems.FindAsync(id);
 
@@ -22,5 +22,11 @@ public class TodoItemRepository : ITodoItemRepository
         var results = await _dbContext.TodoItems.ToListAsync();
 
         return results;
+    }
+    
+    public async Task Add(TodoItem todoItem)
+    {
+        await _dbContext.TodoItems.AddAsync(todoItem);
+        await _dbContext.SaveChangesAsync();
     }
 }

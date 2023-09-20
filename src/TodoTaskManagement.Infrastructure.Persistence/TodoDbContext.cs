@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
-
-namespace TodoTaskManagement.Infrastructure.Persistence;
+﻿namespace TodoTaskManagement.Infrastructure.Persistence;
 
 public class TodoDbContext : DbContext
 {

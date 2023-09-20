@@ -2,6 +2,7 @@
 
 public interface ITodoItemRepository
 {
-    Task<TodoItem?> Get(TodoItemId id);
+    Task<TodoItem?> GetById(TodoItemId id);
     Task<IEnumerable<TodoItem>> GetAll();
+    Task Add(TodoItem todoItem);
 }

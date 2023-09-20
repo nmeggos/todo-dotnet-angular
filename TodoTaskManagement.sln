@@ -18,8 +18,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoTaskManagement.Applicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoTaskManagement.ArchitectureTests", "tests\TodoTaskManagement.ArchitectureTests\TodoTaskManagement.ArchitectureTests.csproj", "{160B61CD-E7F1-40C7-9E7B-E4E5A5E232BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoTaskManagement.API.UnitTests", "tests\TodoTaskManagement.API.UnitTests\TodoTaskManagement.API.UnitTests.csproj", "{825B3435-3949-4B03-BE5F-928DEEBF7160}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F1B15414-0236-4CCD-81E6-76EAC64264B2}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
@@ -63,15 +61,10 @@ Global
 		{160B61CD-E7F1-40C7-9E7B-E4E5A5E232BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{160B61CD-E7F1-40C7-9E7B-E4E5A5E232BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{160B61CD-E7F1-40C7-9E7B-E4E5A5E232BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{825B3435-3949-4B03-BE5F-928DEEBF7160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{825B3435-3949-4B03-BE5F-928DEEBF7160}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{825B3435-3949-4B03-BE5F-928DEEBF7160}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{825B3435-3949-4B03-BE5F-928DEEBF7160}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2026D1AD-521C-4040-8A0B-75A7774D00C5} = {75981A0D-452A-4161-BA1F-F2605953A4F0}
 		{D2020FF2-1B40-4F7F-82C2-527745AA9742} = {75981A0D-452A-4161-BA1F-F2605953A4F0}
 		{160B61CD-E7F1-40C7-9E7B-E4E5A5E232BD} = {75981A0D-452A-4161-BA1F-F2605953A4F0}
-		{825B3435-3949-4B03-BE5F-928DEEBF7160} = {75981A0D-452A-4161-BA1F-F2605953A4F0}
 	EndGlobalSection
 EndGlobal

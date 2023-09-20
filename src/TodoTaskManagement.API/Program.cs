@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using TodoTaskManagement.API.Endpoints.v1;
+using TodoTaskManagement.API.Endpoints;
 using TodoTaskManagement.Application;
 using TodoTaskManagement.Infrastructure.Persistence;
 
@@ -15,20 +15,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplication();
 builder.Services.AddPersistence(configuration);
 
-// builder.Services
-//     .AddApiVersioning(setup =>
-//     {
-//         setup.DefaultApiVersion = new ApiVersion(1, 0);
-//         setup.AssumeDefaultVersionWhenUnspecified = true;
-//         setup.ReportApiVersions = true;
-//     })
-//     .AddVersionedApiExplorer(setup =>
-//     {
-//         setup.GroupNameFormat = "'v'VVV";
-//         setup.SubstituteApiVersionInUrl = true;
-//     });
-
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<TodoDbContext>();
+    dbContext.Database.EnsureCreated();
+}
 
 app.UseSwaggerUI();
 
