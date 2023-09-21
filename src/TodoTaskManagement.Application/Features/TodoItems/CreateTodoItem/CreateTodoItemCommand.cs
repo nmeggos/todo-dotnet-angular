@@ -8,7 +8,10 @@ public class CreateTodoItemCommand : IRequest<Response<string>>
     }
     
     public string Title { get; set; }
+    
     public string Description { get; set; }
     
     public int? CategoryId { get; set; }
+    
+    public DateOnly? DueDate { get; set; }
 }

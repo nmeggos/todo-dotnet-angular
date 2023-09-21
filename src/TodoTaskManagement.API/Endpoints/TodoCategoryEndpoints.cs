@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 using TodoTaskManagement.Application.Features.TodoCategories.CreateTodoCategory;
 using TodoTaskManagement.Application.Features.TodoCategories.GetTodoCategories;
 using TodoTaskManagement.Application.Features.TodoCategories.GetTodoCategory;
@@ -10,7 +11,16 @@ public static class TodoCategoryEndpoints
 {
     public static IEndpointRouteBuilder MapTodoCategoryEndpoints(this IEndpointRouteBuilder builder)
     {
-        var group = builder.MapGroup("categories");
+        var group = builder.MapGroup("/todos/categories")
+            .WithOpenApi(cfg =>
+            {
+                cfg.Description = "Todo Categories";
+                cfg.Tags = new List<OpenApiTag>()
+                {
+                    new() { Name = "Todo Categories" }
+                };
+                return cfg;
+            });
 
         group.MapGet("/", async ([FromServices] IMediator mediator) =>
         {

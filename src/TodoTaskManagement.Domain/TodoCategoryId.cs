@@ -1,8 +1,6 @@
-﻿using TodoTaskManagement.Domain.Exceptions;
+﻿namespace TodoTaskManagement.Domain;
 
-namespace TodoTaskManagement.Domain;
-
-public record TodoCategoryId
+public record TodoCategoryId : IParsable<TodoCategoryId>
 {
     private TodoCategoryId(int value)
     {
@@ -13,33 +11,39 @@ public record TodoCategoryId
     
     public static implicit operator int(TodoCategoryId id) => id.Value;
 
-    public static TodoCategoryId From(string? id)
-    {
-        if (int.TryParse(id, out var value))
-        {
-            return new TodoCategoryId(value);
-        }
+    public static TodoCategoryId From(string? id) => Parse(id);
 
-        return new TodoCategoryId(0);
-    }
-    
     public static TodoCategoryId From(int id)
     {
         return new(id);
     }
     
-    public static TodoCategoryId From(int? id)
-    {
-        if (id is null)
-        {
-            return new(0);
-        }
-        
-        return new((int)id);
-    }
+    public static TodoCategoryId From(int? id) =>
+        id is null 
+            ? new(0) 
+            : new((int)id);
 
     public override string ToString()
     {
         return Value.ToString();
+    }
+
+    public static TodoCategoryId Parse(string? s, IFormatProvider? provider = null)
+    {
+        return int.TryParse(s, out var value) 
+            ? new TodoCategoryId(value) 
+            : new TodoCategoryId(0);
+    }
+
+    public static bool TryParse(string? s, IFormatProvider? provider, out TodoCategoryId result)
+    {
+        if (int.TryParse(s, out var value))
+        {
+            result = new TodoCategoryId(value);
+            return true;
+        }
+
+        result = new TodoCategoryId(0);
+        return false;
     }
 }

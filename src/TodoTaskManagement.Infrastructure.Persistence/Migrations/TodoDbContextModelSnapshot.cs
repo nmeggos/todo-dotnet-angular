@@ -42,8 +42,11 @@ namespace TodoTaskManagement.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("TodoTaskManagement.Domain.TodoItem", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
@@ -61,11 +64,9 @@ namespace TodoTaskManagement.Infrastructure.Persistence.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("Description");
 
-                    b.Property<bool>("IsCompleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false)
-                        .HasColumnName("IsCompleted");
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("datetime")
+                        .HasColumnName("DueDate");
 
                     b.Property<string>("Title")
                         .IsRequired()

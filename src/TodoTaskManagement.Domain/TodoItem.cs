@@ -10,13 +10,10 @@ public class TodoItem : BaseAggregateRoot<TodoItemId>
         
     }
 
-    private TodoItem(TodoItemId id,
-        string title,
-        string description) 
+    private TodoItem(string title, string description) 
     {
-        Id = id;
         SetTitle(title);
-        Description = description;
+        SetDescription(description);
     }
     
     public string Title { get; private set; }
@@ -27,13 +24,16 @@ public class TodoItem : BaseAggregateRoot<TodoItemId>
     
     public TodoCategory? Category { get; private set; }
     
-    public DateTime CreatedOn { get; private set; }
-    
-    public DateTime? UpdatedOn { get; private set; }
+
+    public DateTime? DueDate { get; private set; }
     
     public DateTime? CompletedOn { get; private set; }
+    
+    public DateTime CreatedOn { get; private set; }
 
-    public bool IsCompleted { get; private set; }
+    public DateTime? UpdatedOn { get; private set; }
+
+    public bool IsCompleted => CompletedOn is not null;
 
     public void Complete()
     {
@@ -46,22 +46,14 @@ public class TodoItem : BaseAggregateRoot<TodoItemId>
         
         CompletedOn = currentDate;
         UpdatedOn = currentDate;
-        IsCompleted = true;
     }
     
     public void AssignCategory(TodoCategoryId categoryId)
     {
         CategoryId = categoryId;
     }
-    
-    public void Update(string title, string description)
-    {
-        SetTitle(title);
-        Description = description;
-        UpdatedOn = DateTime.UtcNow;
-    }
-    
-    private void SetTitle(string title)
+
+    public void SetTitle(string title)
     {
         if (string.IsNullOrWhiteSpace(title))
         {
@@ -71,12 +63,38 @@ public class TodoItem : BaseAggregateRoot<TodoItemId>
         Title = title;
     }
     
+    public void SetDescription(string description)
+    {
+        Description = description;
+    }
+    
+    public void SetDueDate(DateTime? dueDate)
+    {
+        if (dueDate is null)
+        {
+            return;
+        }
+        
+        if (dueDate < DateTime.UtcNow)
+        {
+            throw new InvalidTodoItemDueDateException();
+        }
+        
+        DueDate = dueDate;
+    }
+
+    public void Update(string title, string description)
+    {
+        SetTitle(title);
+        Description = description;
+        UpdatedOn = DateTime.UtcNow;
+    }
+
     public static TodoItem Create(string title, string description)
     {
         var currentDate = DateTime.UtcNow;
         
         var todo = new TodoItem(
-            TodoItemId.New(),
             title,
             description)
         {
@@ -91,7 +109,6 @@ public class TodoItem : BaseAggregateRoot<TodoItemId>
         var currentDate = DateTime.UtcNow;
         
         var todo = new TodoItem(
-            TodoItemId.New(),
             title,
             description)
         {

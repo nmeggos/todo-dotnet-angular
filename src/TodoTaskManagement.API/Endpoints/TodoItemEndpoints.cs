@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TodoTaskManagement.Application.Features;
 using TodoTaskManagement.Application.Features.TodoItems;
+using TodoTaskManagement.Application.Features.TodoItems.CompleteTodoItem;
 using TodoTaskManagement.Application.Features.TodoItems.CreateTodoItem;
 using TodoTaskManagement.Application.Features.TodoItems.GetTodoItem;
 using TodoTaskManagement.Application.Features.TodoItems.GetTodoItems;
@@ -12,7 +12,7 @@ namespace TodoTaskManagement.API.Endpoints;
 public static class TodoItemEndpoints
 {
     public static IEndpointRouteBuilder MapTodoItemEndpoints(this IEndpointRouteBuilder endpoints)
-    {   
+    {
         endpoints.MapGet("todos",
                 async ([FromServices] IMediator mediator) =>
                 {
@@ -27,8 +27,7 @@ public static class TodoItemEndpoints
                 return cfg;
             })
             .Produces<Response<IEnumerable<TodoItemResult>>>(StatusCodes.Status200OK)
-            .Produces<Response<IEnumerable<TodoItemResult>>>(StatusCodes.Status400BadRequest)
-            .WithGroupName("v1");
+            .Produces<Response<IEnumerable<TodoItemResult>>>(StatusCodes.Status400BadRequest);
 
         endpoints.MapGet("todos/{id}", async (
                 [FromRoute] string id,
@@ -44,14 +43,14 @@ public static class TodoItemEndpoints
                 cfg.Description = "Get TodoItem by id";
                 return cfg;
             });
-        
+
         endpoints.MapPost("todos",
                 async (
-                    [FromBody] CreateTodoItemCommand command, 
+                    [FromBody] CreateTodoItemCommand command,
                     [FromServices] IMediator mediator) =>
                 {
                     var response = await mediator.Send(command);
-                    
+
                     return Results.Created($"todos/{response.Data}", response);
                 })
             .WithOpenApi(cfg =>
@@ -61,8 +60,33 @@ public static class TodoItemEndpoints
                 return cfg;
             })
             .Produces<Response<string>>(StatusCodes.Status201Created)
-            .Produces<Response<string>>(StatusCodes.Status400BadRequest)
-            .WithGroupName("v1");
+            .Produces<Response<string>>(StatusCodes.Status400BadRequest);
+
+        endpoints.MapPut("todos/{id}/complete",
+                async (
+                    [FromRoute] string id,
+                    [FromBody] CompleteTodoItemCommand command,
+                    [FromServices] IMediator mediator) =>
+                {
+                    if (id != command.Id)
+                    {
+                        return Results.BadRequest(Response<string>
+                            .Failure(
+                                $"The id in the request body ({command.Id}) does not match the id in the route ({id})"));
+                    }
+
+                    var response = await mediator.Send(command);
+
+                    return Results.Ok(response);
+                })
+            .WithOpenApi(cfg =>
+            {
+                cfg.OperationId = "UpdateTodoItem";
+                cfg.Description = "Update Todo Item";
+                return cfg;
+            })
+            .Produces<Response<string>>(StatusCodes.Status200OK)
+            .Produces<Response<string>>(StatusCodes.Status400BadRequest);
         
         return endpoints;
     }

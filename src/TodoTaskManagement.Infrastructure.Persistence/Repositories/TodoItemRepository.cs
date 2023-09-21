@@ -33,4 +33,10 @@ public class TodoItemRepository : ITodoItemRepository
         await _dbContext.TodoItems.AddAsync(todoItem);
         await _dbContext.SaveChangesAsync();
     }
+    
+    public async Task Update(TodoItem todoItem)
+    {
+        _dbContext.TodoItems.Update(todoItem);
+        await _dbContext.SaveChangesAsync();
+    }
 }

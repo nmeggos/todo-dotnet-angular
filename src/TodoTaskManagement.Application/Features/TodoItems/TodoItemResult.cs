@@ -17,6 +17,8 @@ public class TodoItemResult
     
     public TodoCategoryResult? Category { get; private set; }
     
+    public DateOnly? DueDate { get; private set; }
+    
     public DateTime CreatedOn { get; private set; }
     
     public DateTime? UpdatedOn { get; private set; }
