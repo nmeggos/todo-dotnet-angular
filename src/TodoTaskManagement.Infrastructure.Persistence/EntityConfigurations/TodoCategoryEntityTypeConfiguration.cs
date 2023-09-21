@@ -1,4 +1,6 @@
 ﻿
+using TodoTaskManagement.Domain.Identifiers;
+
 namespace TodoTaskManagement.Infrastructure.Persistence.EntityConfigurations;
 
 public class TodoCategoryEntityTypeConfiguration : IEntityTypeConfiguration<TodoCategory>

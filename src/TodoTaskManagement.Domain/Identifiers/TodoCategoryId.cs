@@ -1,4 +1,4 @@
-﻿namespace TodoTaskManagement.Domain;
+﻿namespace TodoTaskManagement.Domain.Identifiers;
 
 public record TodoCategoryId : IParsable<TodoCategoryId>
 {

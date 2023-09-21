@@ -1,4 +1,6 @@
-﻿namespace TodoTaskManagement.Application.Features.TodoCategories.GetTodoCategory;
+﻿using TodoTaskManagement.Domain.Identifiers;
+
+namespace TodoTaskManagement.Application.Features.TodoCategories.GetTodoCategory;
 
 public class GetTodoCategoryQueryHandler : IRequestHandler<GetTodoCategoryQuery, Response<TodoCategoryResult>>
 {

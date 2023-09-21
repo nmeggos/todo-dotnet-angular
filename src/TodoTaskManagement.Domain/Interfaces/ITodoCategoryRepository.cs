@@ -1,4 +1,6 @@
-﻿namespace TodoTaskManagement.Domain.Interfaces;
+﻿using TodoTaskManagement.Domain.Identifiers;
+
+namespace TodoTaskManagement.Domain.Interfaces;
 
 public interface ITodoCategoryRepository
 {
